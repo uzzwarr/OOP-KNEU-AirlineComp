@@ -1,3 +1,5 @@
+package Lab2;
+
 public class Main {
     public static void main(String[] args) {
         Crew myCrew = new Crew("Stepan Pantera", "Leonid Montana", "Vasyl Oliinyk");

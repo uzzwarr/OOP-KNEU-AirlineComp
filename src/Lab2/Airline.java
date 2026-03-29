@@ -1,3 +1,5 @@
+package Lab2;
+
 import java.util.ArrayList;
 
 public class Airline {
@@ -15,7 +17,7 @@ public class Airline {
 
     @Override
     public String toString() {
-        return "Airline{" +
+        return "Lab2.Airline{" +
                 "name='" + name + '\'' +
                 ", flights=" + flights +
                 '}';

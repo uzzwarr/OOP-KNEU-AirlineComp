@@ -1,3 +1,5 @@
+package Lab2;
+
 public class Flight {
     private String flightNumber;
     private int passengerCount;
@@ -45,7 +47,7 @@ public class Flight {
 
     @Override
     public String toString() {
-        return "Flight{" +
+        return "Lab2.Flight{" +
                 "flightNumber='" + flightNumber + '\'' +
                 ", passengerCount=" + passengerCount +
                 ", fuelAmount=" + fuelAmount +

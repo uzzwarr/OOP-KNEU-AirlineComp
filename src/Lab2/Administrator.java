@@ -1,3 +1,5 @@
+package Lab2;
+
 public class Administrator {
     private String adminName;
     private String workShift;

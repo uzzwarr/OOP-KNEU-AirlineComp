@@ -1,3 +1,5 @@
+package Lab2;
+
 public class Crew {
     private String chiefPilot;
     private String coPilot;
@@ -32,7 +34,7 @@ public class Crew {
 
     @Override
     public String toString() {
-        return "Crew{" +
+        return "Lab2.Crew{" +
                 "chiefPilot='" + chiefPilot + '\'' +
                 ", coPilot='" + coPilot + '\'' +
                 ", radioOperator='" + radioOperator + '\'' +

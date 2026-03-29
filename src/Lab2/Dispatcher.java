@@ -1,3 +1,5 @@
+package Lab2;
+
 public class Dispatcher {
     private String dispName;
     private String dispID;
