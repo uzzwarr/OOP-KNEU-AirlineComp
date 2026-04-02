@@ -1,4 +1,8 @@
 package Lab3.Flyweight;
 
-public class Shape {
+public interface Shape {
+
+    void draw(int x, int y);
+
 }
+
