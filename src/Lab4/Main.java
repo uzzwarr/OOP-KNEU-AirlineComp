@@ -15,6 +15,14 @@ public class Main {
         myFlight.addObserver(myDispatcherSubscriber);
 
         myFlight.notifyObservers("The flight is delayed due to meatball-shaped precipitation");
+
+        BaggageCalculator myBaggageCalculator = new BaggageCalculator();
+        StandardPricingStrategy myStandardPricingStrategy = new StandardPricingStrategy();
+
+        myBaggageCalculator.setStrategy(myStandardPricingStrategy);
+
+        System.out.println(myBaggageCalculator.calculate(20));
+
     }
 
 
