@@ -2,6 +2,8 @@ package Lab5;
 
 import java.time.LocalDateTime;
 import jakarta.persistence.*;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
 
 @Entity
 public class Flight {
@@ -15,6 +17,11 @@ public class Flight {
     private LocalDateTime departureTime;
     private LocalDateTime arrivalTime;
 
+    @ManyToOne
+    @JoinColumn(name = "airplane_id")
+    private Airplane airplane;
+
+
     public Flight() {}
 
     public Flight(String flightNumber, String destination, LocalDateTime departureTime, LocalDateTime arrivalTime) {
@@ -26,4 +33,26 @@ public class Flight {
 
     public Long getId() {return id;}
     public void setId(Long id) {this.id = id; }
+
+    public Airplane getAirplane() {
+        return airplane;
+    }
+
+    public void setAirplane(Airplane airplane) {
+        this.airplane = airplane;
+    }
+
+    @Override
+    public String toString() {
+        return "Flight{" +
+                "id=" + id +
+                ", flightNumber='" + flightNumber + '\'' +
+                ", destination='" + destination + '\'' +
+                ", departureTime=" + departureTime +
+                ", arrivalTime=" + arrivalTime +
+                ", airplane=" + airplane +
+                '}';
+    }
 }
+
+
