@@ -14,6 +14,8 @@ public class FlightDao {
                 .configure("properties.xml")
                 .addAnnotatedClass(Flight.class)
                 .addAnnotatedClass(Airplane.class)
+                .addAnnotatedClass(Passenger.class)
+                .addAnnotatedClass(Passport.class)
                 .buildSessionFactory();
     }
 

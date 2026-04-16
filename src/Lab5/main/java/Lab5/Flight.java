@@ -1,6 +1,8 @@
 package Lab5;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import jakarta.persistence.*;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
@@ -22,6 +24,10 @@ public class Flight {
     private Airplane airplane;
 
 
+
+    @ManyToMany
+    private List<Passenger> passengers = new ArrayList<>();
+
     public Flight() {}
 
     public Flight(String flightNumber, String destination, LocalDateTime departureTime, LocalDateTime arrivalTime) {
@@ -40,6 +46,14 @@ public class Flight {
 
     public void setAirplane(Airplane airplane) {
         this.airplane = airplane;
+    }
+
+    public List<Passenger> getPassengers() {
+        return passengers;
+    }
+
+    public void setPassengers(List<Passenger> passengers) {
+        this.passengers = passengers;
     }
 
     @Override
