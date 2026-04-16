@@ -44,11 +44,11 @@ public class Passenger {
         this.fullName = fullName;
     }
 
-    public String getPassportNumb() {
+    public String getPassport() {
         return passportNumb;
     }
 
-    public void setPassportNumb(String passportNumb) {
-        this.passportNumb = passportNumb;
+    public void setPassport(Passport passport) {
+        this.passport = passport;
     }
 }
