@@ -1,4 +1,5 @@
-import Lab5.*;
+package Lab5;
+
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
