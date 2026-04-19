@@ -2,6 +2,7 @@ package Lab6;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
 
 public class TicketDaoTest {
 
@@ -22,7 +23,19 @@ public class TicketDaoTest {
 
 
         assertThrows(Exception.class, () -> {
-            dao.save(badTicketw);
+            dao.save(badTicket);
         });
+    }
+
+    @Test
+    public void testFindByHqlQuery() {
+        TicketDao dao = new TicketDao();
+        dao.save(new Ticket("99C", 2000.0));
+
+
+        List<Ticket> tickets = dao.findByHqlQuery("FROM Ticket");
+
+        assertNotNull(tickets, "The list must not be null");
+        assertFalse(tickets.isEmpty(), "The list of tickets must not be empty");
     }
 }

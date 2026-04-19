@@ -5,10 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import java.util.List;
-import jakarta.validation.ConstraintViolationException;
-import jakarta.validation.Validation;
-import jakarta.validation.Validator;
-import jakarta.validation.ValidatorFactory;
+
 
 public class TicketDao implements GenericDao<Ticket> {
 
@@ -23,6 +20,10 @@ public class TicketDao implements GenericDao<Ticket> {
 
     @Override
     public void save(Ticket entity) {
+        if (entity.getPrice() < 0) {
+            throw new IllegalArgumentException("Ціна квитка не може бути від'ємною!");
+        }
+
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         try {
@@ -30,7 +31,6 @@ public class TicketDao implements GenericDao<Ticket> {
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) transaction.rollback();
-            e.printStackTrace();
             throw e;
         } finally {
             session.close();

@@ -13,7 +13,7 @@ public class Ticket {
     @NotBlank(message = "The seat number cannot be left blank!")
     private String seatNumber;
 
-    @Min(value = 0, message = "The ticket price cannot be less than zero!")
+    @PositiveOrZero(message = "The ticket price cannot be less than zero!")
     private double price;
 
     public Ticket() {}
