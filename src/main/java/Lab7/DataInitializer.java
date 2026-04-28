@@ -1,6 +1,7 @@
 package Lab7;
 
-import Lab7.Flight;
+import Lab7.AdminUser;
+import Lab7.repository.AdminUserRepository;
 import Lab7.services.FlightService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -11,29 +12,37 @@ public class DataInitializer implements CommandLineRunner {
 
     private final FlightService flightService;
 
-    public DataInitializer(FlightService flightService) {
+    private final AdminUserRepository adminUserRepository;
+
+    public DataInitializer(FlightService flightService, AdminUserRepository adminUserRepository) {
         this.flightService = flightService;
+        this.adminUserRepository = adminUserRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
 
-        Flight flight1 = new Flight();
+        AdminUser admin = new AdminUser("admin", "1234");
+        adminUserRepository.save(admin); // пароль: 1234
 
-        flight1.setFlightNumber("KNEU-FK67");
-        flight1.setDepartureCity("New York");
-        flight1.setArrivalCity("Kharkiv");
+        Flight flight1 = new Flight.Builder()
 
-        flight1.setDepartureTime(LocalDateTime.now().plusHours(1));
-        flight1.setArrivalTime(LocalDateTime.now().plusDays(1).plusHours(2));
+                .flightNumber("KNEU-FK67")
+                .departureCity("New York")
+                .arrivalCity("Kharkiv")
+                .departureTime(LocalDateTime.now().plusHours(1))
+                .arrivalTime(LocalDateTime.now().plusDays(1).plusHours(2))
+                .build();
 
         flightService.save(flight1);
 
-        Flight flight2 = new Flight();
-
-        flight2.setFlightNumber("KNEU-FK96");
-        flight2.setDepartureCity("Toronto");
-        flight2.setArrivalCity("Tokyo");
+        Flight flight2 = new Flight.Builder()
+                .flightNumber("KNEU-777")
+                .departureCity("Toronto")
+                .arrivalCity("Tokyo")
+                .departureTime(LocalDateTime.now().plusHours(1))
+                .arrivalTime(LocalDateTime.now().plusDays(1).plusHours(2))
+                .build();
 
         flight2.setDepartureTime(LocalDateTime.now().plusHours(1));
         flight2.setArrivalTime(LocalDateTime.now().plusDays(1).plusHours(1));
@@ -42,6 +51,7 @@ public class DataInitializer implements CommandLineRunner {
 
         System.out.println("The database has been successfully populated with test flights!");
     }
+
 }
 
 

@@ -83,5 +83,42 @@ public class Flight {
         this.crew = crew;
     }
 
+    public static class Builder {
+        private Flight flight;
 
+        public Builder() {
+            flight = new Flight();
+        }
+
+        // методи налаштовують поле і повертає "самого себе" (this)
+        public Builder flightNumber(String flightNumber) {
+            flight.setFlightNumber(flightNumber);
+            return this;
+        }
+
+        public Builder departureCity(String departureCity) {
+            flight.setDepartureCity(departureCity);
+            return this;
+        }
+
+        public Builder arrivalCity(String arrivalCity) {
+            flight.setArrivalCity(arrivalCity);
+            return this;
+        }
+
+        public Builder departureTime(LocalDateTime departureTime) {
+            flight.setDepartureTime(departureTime);
+            return this;
+        }
+
+        public Builder arrivalTime(LocalDateTime arrivalTime) {
+            flight.setArrivalTime(arrivalTime);
+            return this;
+        }
+
+        //  віддаємо повністю готовий і заповнений рейс
+        public Flight build() {
+            return flight;
+        }
+    }
 }
