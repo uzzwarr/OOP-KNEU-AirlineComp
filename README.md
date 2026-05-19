@@ -7,7 +7,7 @@
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2-brightgreen?logo=springboot)](https://spring.io/projects/spring-boot)
 [![Vue](https://img.shields.io/badge/Vue.js-3.4-42b883?logo=vuedotjs)](https://vuejs.org/)
 [![MySQL](https://img.shields.io/badge/MySQL-8-blue?logo=mysql)](https://www.mysql.com/)
-[![License](https://img.shields.io/badge/License-Educational-lightgrey)](#license)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ---
 
@@ -492,20 +492,10 @@ A flight can have many crew members and a crew member can be assigned to many fl
 
 ---
 
-## 👨‍🎓 Author
-
-**Oleksii Lytvynenko**
-Group **ІН-204**, Kyiv National Economic University (KNEU)
-Faculty of Information Systems and Technologies
-
-GitHub: [@uzzwarr](https://github.com/uzzwarr)
-
----
-
 ## 📄 License
 
-This project was developed for **educational purposes** as part of the Object-Oriented Programming course at KNEU. Feel free to use it as a learning reference. Attribution is appreciated but not required.
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
 
----
+Originally developed for educational purposes as part of the Object-Oriented Programming course at KNEU. You are free to use, modify, and distribute the code for any purpose, including commercial use, provided that the original copyright notice and this permission notice are included.
 
-<p align="center">Made with ☕, 🎧, and ✈️ at <strong>KNEU</strong></p>
+
