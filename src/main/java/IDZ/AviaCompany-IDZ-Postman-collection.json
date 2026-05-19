@@ -1,0 +1,220 @@
+{
+  "info": {
+    "name": "AviaCompany IDZ - REST API",
+    "description": "Колекція для тестування REST-контролерів Spring Boot бекенду. ІДЗ з ООП, Литвиненко Олексій, ІН-204.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8080/api" },
+    { "key": "token", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "0. Auth",
+      "item": [
+        {
+          "name": "POST /auth/login (admin/1234) — зберігає токен у змінну",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "  const json = pm.response.json();",
+                  "  pm.collectionVariables.set('token', json.token);",
+                  "  pm.test('Токен отримано', () => pm.expect(json.token).to.be.a('string'));",
+                  "} else {",
+                  "  pm.test('Логін успішний', () => pm.expect.fail('Status ' + pm.response.code));",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"1234\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/auth/login", "host": ["{{baseUrl}}"], "path": ["auth", "login"] }
+          }
+        },
+        {
+          "name": "GET /auth/me (потрібен токен)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/auth/me", "host": ["{{baseUrl}}"], "path": ["auth", "me"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "1. Flights CRUD",
+      "item": [
+        {
+          "name": "GET /flights — всі рейси",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/flights", "host": ["{{baseUrl}}"], "path": ["flights"] }
+          }
+        },
+        {
+          "name": "GET /flights/1 — один рейс",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/flights/1", "host": ["{{baseUrl}}"], "path": ["flights", "1"] }
+          }
+        },
+        {
+          "name": "POST /flights — створити рейс",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"flightNumber\": \"KNEU-NEW-001\",\n  \"departureCity\": \"Київ\",\n  \"arrivalCity\": \"Прага\",\n  \"departureTime\": \"2026-06-15T10:00:00\",\n  \"arrivalTime\": \"2026-06-15T13:30:00\",\n  \"crewIds\": [1, 2]\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/flights", "host": ["{{baseUrl}}"], "path": ["flights"] }
+          }
+        },
+        {
+          "name": "PUT /flights/1 — оновити рейс",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"flightNumber\": \"KNEU-FK67\",\n  \"departureCity\": \"Київ\",\n  \"arrivalCity\": \"Львів\",\n  \"departureTime\": \"2026-06-20T08:00:00\",\n  \"arrivalTime\": \"2026-06-20T10:00:00\",\n  \"crewIds\": [1, 3]\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/flights/1", "host": ["{{baseUrl}}"], "path": ["flights", "1"] }
+          }
+        },
+        {
+          "name": "DELETE /flights/3 — видалити рейс",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/flights/3", "host": ["{{baseUrl}}"], "path": ["flights", "3"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. CrewMember CRUD",
+      "item": [
+        {
+          "name": "GET /crew — всі члени екіпажу",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/crew", "host": ["{{baseUrl}}"], "path": ["crew"] }
+          }
+        },
+        {
+          "name": "GET /crew/1 — один член",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/crew/1", "host": ["{{baseUrl}}"], "path": ["crew", "1"] }
+          }
+        },
+        {
+          "name": "POST /crew — створити члена екіпажу",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Тестовий Тест Тестович\",\n  \"role\": \"Pilot\",\n  \"experienceYears\": 10,\n  \"licenseNumber\": \"UA-TEST-001\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/crew", "host": ["{{baseUrl}}"], "path": ["crew"] }
+          }
+        },
+        {
+          "name": "PUT /crew/1 — оновити",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Іваненко Іван Петрович\",\n  \"role\": \"Pilot\",\n  \"experienceYears\": 15,\n  \"licenseNumber\": \"UA-001-PL-UPD\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/crew/1", "host": ["{{baseUrl}}"], "path": ["crew", "1"] }
+          }
+        },
+        {
+          "name": "DELETE /crew/4 — видалити",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/crew/4", "host": ["{{baseUrl}}"], "path": ["crew", "4"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Negative tests (для звіту)",
+      "item": [
+        {
+          "name": "POST /flights без токена → 401",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"flightNumber\": \"NO-AUTH\",\n  \"departureCity\": \"X\",\n  \"arrivalCity\": \"Y\",\n  \"departureTime\": \"2026-06-15T10:00:00\",\n  \"arrivalTime\": \"2026-06-15T12:00:00\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/flights", "host": ["{{baseUrl}}"], "path": ["flights"] }
+          }
+        },
+        {
+          "name": "POST /auth/login невірний пароль → 401",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"wrong\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/auth/login", "host": ["{{baseUrl}}"], "path": ["auth", "login"] }
+          }
+        },
+        {
+          "name": "GET /flights/9999 неіснуючий → 404",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/flights/9999", "host": ["{{baseUrl}}"], "path": ["flights", "9999"] }
+          }
+        },
+        {
+          "name": "POST /flights валідація (порожні поля) → 400",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"flightNumber\": \"\",\n  \"departureCity\": \"\",\n  \"arrivalCity\": \"\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/flights", "host": ["{{baseUrl}}"], "path": ["flights"] }
+          }
+        }
+      ]
+    }
+  ]
+}

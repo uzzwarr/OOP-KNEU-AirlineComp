@@ -1,0 +1,121 @@
+/* кольорова палітра: глибокий синій (КНЕУ-ський) + білий + акценти */
+:root {
+  --brand-primary: #0a3d62;
+  --brand-secondary: #3c6382;
+  --brand-accent: #f5a623;
+  --brand-light: #f5f6fa;
+  --brand-danger: #c0392b;
+}
+
+body {
+  background: var(--brand-light);
+  font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+}
+
+/* верхнє меню */
+.navbar-brand {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.brand-navbar {
+  background: linear-gradient(90deg, var(--brand-primary) 0%, var(--brand-secondary) 100%);
+}
+
+.brand-navbar .nav-link,
+.brand-navbar .navbar-brand {
+  color: #fff !important;
+}
+
+.brand-navbar .nav-link:hover {
+  color: var(--brand-accent) !important;
+}
+
+.brand-navbar .nav-link.router-link-active {
+  color: var(--brand-accent) !important;
+  font-weight: 600;
+}
+
+/* основний контейнер */
+.page-container {
+  padding: 24px 0;
+}
+
+.page-title {
+  color: var(--brand-primary);
+  margin-bottom: 24px;
+  font-weight: 700;
+  border-bottom: 3px solid var(--brand-accent);
+  padding-bottom: 8px;
+  display: inline-block;
+}
+
+/* картки */
+.card {
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.card-header {
+  background: var(--brand-primary);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* кнопки */
+.btn-primary {
+  background-color: var(--brand-primary);
+  border-color: var(--brand-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--brand-secondary);
+  border-color: var(--brand-secondary);
+}
+
+.btn-accent {
+  background-color: var(--brand-accent);
+  border-color: var(--brand-accent);
+  color: #fff;
+}
+
+.btn-accent:hover {
+  background-color: #e0941d;
+  border-color: #e0941d;
+  color: #fff;
+}
+
+/* таблиця */
+.table thead {
+  background: var(--brand-primary);
+  color: #fff;
+}
+
+/* футер */
+.footer {
+  background: var(--brand-primary);
+  color: #fff;
+  padding: 16px 0;
+  margin-top: 48px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* бейджі ролей екіпажу */
+.crew-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  background: var(--brand-secondary);
+  color: #fff;
+  margin-right: 4px;
+  margin-bottom: 2px;
+}
+
+/* анімація завантаження */
+.spinner-small {
+  width: 1rem;
+  height: 1rem;
+  border-width: 0.15rem;
+}
